@@ -1,8 +1,12 @@
-## cachematrix.R implements a wrapper for the solve() method which performs the matrix inversion.
+## cachematrix.R implements a wrapper for the matrix object capable of storing its inverse and 
+## a wrapper for the solve() method which first checks to see if the invese is already cached
+## otherwise performs the matrix inversion.
 ## This is implemented using two functions makeCacheMatrix() and cacheSolve()
 
-## makeCasheMatrix() is a wrapper to create a matrix
+
+## makeCasheMatrix() is a wrapper to create a matrix object
 ## This provides plumbing required to cache the inverse of the matrix
+## and exposes the get and set methods for the matrix and its inverse as a list
 
 makeCacheMatrix <- function(m = matrix()) {
         minv <- NULL  ## initialize the inverse to NULL
@@ -22,9 +26,7 @@ makeCacheMatrix <- function(m = matrix()) {
         ## 'get'ter function for the inverse matrix
         getinv <- function() minv
         
-        
-        list(set = set, get = get, setinv = setinv, getinv = getinv)
-        
+        list(set = set, get = get, setinv = setinv, getinv = getinv)        
 }
 
 
